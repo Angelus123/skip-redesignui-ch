@@ -69,5 +69,3 @@ Designed using Tailwind CSS utility classes for faster development and responsiv
 
 📫 Contact
 Feel free to reach out with feedback or questions via GitHub Issues.
-
-Thank you for reviewing my submission!
