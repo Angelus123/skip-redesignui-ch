@@ -1,70 +1,126 @@
-// Description: this file fetches skip sizes from an API, displays them in a grid, and allows users to select a skip size
-
+import React from 'react'
 import { useSkips } from '../hooks/useSkips'
 import SkipCard from '../components/SkipCard'
 import { LoadingSpinner } from '../components/LoadingSpinner'
-import type { Skip } from '../types/skip' 
+import type { Skip } from '../types/skip'
 
 const SkipSelectionPage = () => {
   const { data: skips, loading, error } = useSkips()
 
+  const [selectedSkipId, setSelectedSkipId] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    const stored = localStorage.getItem('selectedSkipIds')
+    if (stored) {
+      setSelectedSkipId(JSON.parse(stored))
+    }
+  }, [])
+
+  React.useEffect(() => {
+    localStorage.setItem('selectedSkipIds', JSON.stringify(selectedSkipId))
+  }, [selectedSkipId])
+
+  const handleSelect = (skipId: string) => {
+    setSelectedSkipId([skipId]);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Find Your Perfect Skip
-          </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
-            Select the ideal skip size for your project needs
-          </p>
-        </div>
-        
-        {loading && (
-          <div className="flex justify-center items-center h-64">
-            <LoadingSpinner />
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
+      <div className="max-w-7xl mx-auto py-10 px-4">
+        <header className="flex flex-col items-center mb-12">
+          <div className="rounded-full p-4 shadow-lg mb-4 flex items-center justify-center transition-colors duration-300">
+            <svg className="h-10 w-10 text-yellow-600 dark:text-yellow-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <rect x="3" y="7" width="13" height="10" rx="2" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 17V7h2a2 2 0 012 2v6a2 2 0 01-2 2h-2z" />
+              <circle cx="7.5" cy="19" r="1.5" />
+              <circle cx="17.5" cy="19" r="1.5" />
+            </svg>
+            <svg className="h-10 w-10 text-blue-700 dark:text-blue-200 ml-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 7l-1.5-2.5M21 7l-2.5 1.5M21 7h-6m-6 10l1.5 2.5M3 17l2.5-1.5M3 17h6m2-13v4m0 0l-2.5 2.5M12 5l2.5 2.5M12 19v-4m0 0l2.5-2.5M12 15l-2.5-2.5" />
+            </svg>
           </div>
-        )}
-        
-        {/* Error State */}
-        {error && (
-          <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-8">
-            <div className="flex">
-              <div className="flex-shrink-0">
-              </div>
-              <div className="ml-3">
-                <p className="text-sm text-red-700">
-                  Error loading skip sizes: {error}
-                </p>
-              </div>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-tight">Choose Your Skip Size</h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-300 text-lg">Browse our range of skips and pick the best fit for your project.</p>
+        </header>
+
+        <section>
+          {loading && (
+            <div className="flex justify-center items-center h-48">
+              <LoadingSpinner />
             </div>
-          </div>
-        )}
-        
-        {/* Skip Grid */}
-        {skips && (
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {skips.map((skip: Skip) => (
-              <SkipCard key={skip.id} skip={skip} />
-            ))}
-          </div>
-        )}
-        
-        {/* Trust Badges */}
-        <div className="mt-16 border-t border-gray-200 pt-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {['24/7 Support', 'Fast Delivery', 'Eco-Friendly', 'Price Match'].map((item) => (
-              <div key={item} className="text-center">
-                <div className="flex items-center justify-center h-12 w-12 mx-auto bg-primary.light rounded-full text-primary.DEFAULT">
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
+          )}
+
+          {error && (
+            <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 rounded p-4 mb-8 flex items-center">
+              <svg className="h-6 w-6 text-red-600 dark:text-red-300 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-1.414 1.414M6.343 17.657l-1.415-1.414M6.343 6.343l1.414 1.414M17.657 17.657l1.414-1.414M12 8v4m0 4h.01" />
+              </svg>
+              <span className="text-red-700 dark:text-red-300 font-medium">Error loading skip sizes: {error}</span>
+            </div>
+          )}
+
+          {skips && (
+            <div className="grid gap-6 grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+              {skips.map((skip: Skip) => (
+                <div
+                  key={skip.id}
+                  className={`rounded-xl shadow-md border-2 transition-all duration-200 ${selectedSkipId.includes(skip.id)
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900'
+                      : 'border-transparent bg-white dark:bg-gray-800'
+                    } hover:shadow-lg`}
+                >
+                  <SkipCard
+                    skip={skip}
+                    selected={selectedSkipId.includes(skip.id)}
+                    onClick={() => handleSelect(skip.id)}
+                  />
                 </div>
-                <h3 className="mt-4 text-lg font-medium text-gray-900">{item}</h3>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <footer className="mt-16">
+          <div className="flex flex-wrap justify-center gap-8">
+            {[
+              {
+                label: '24/7 Support', icon: (
+                  <svg className="h-7 w-7 text-blue-500 dark:text-blue-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-1.414 1.414M6.343 17.657l-1.415-1.414M6.343 6.343l1.414 1.414M17.657 17.657l1.414-1.414M12 8v4m0 4h.01" />
+                  </svg>
+                )
+              },
+              {
+                label: 'Fast Delivery', icon: (
+                  <svg className="h-7 w-7 text-green-500 dark:text-green-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h1l2 7h13l2-7h1" />
+                    <circle cx="7.5" cy="19.5" r="1.5" />
+                    <circle cx="17.5" cy="19.5" r="1.5" />
+                  </svg>
+                )
+              },
+              {
+                label: 'Eco-Friendly', icon: (
+                  <svg className="h-7 w-7 text-green-700 dark:text-green-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 22c4.418 0 8-4.03 8-9 0-5.523-4.03-10-8-10S4 7.477 4 13c0 4.97 3.582 9 8 9z" />
+                  </svg>
+                )
+              },
+              {
+                label: 'Price Match', icon: (
+                  <svg className="h-7 w-7 text-yellow-500 dark:text-yellow-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )
+              },
+            ].map(({ label, icon }) => (
+              <div key={label} className="flex flex-col items-center">
+                <div className="mb-2">{icon}</div>
+                <span className="text-base font-semibold text-gray-700 dark:text-gray-200">{label}</span>
               </div>
             ))}
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   )
