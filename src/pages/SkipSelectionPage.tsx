@@ -1,5 +1,5 @@
-// this file is part of a skip hire application
-// It fetches skip sizes from an API, displays them in a grid, and allows users to select a skip size
+// Description: this file fetches skip sizes from an API, displays them in a grid, and allows users to select a skip size
+
 import { useSkips } from '../hooks/useSkips'
 import SkipCard from '../components/SkipCard'
 import { LoadingSpinner } from '../components/LoadingSpinner'

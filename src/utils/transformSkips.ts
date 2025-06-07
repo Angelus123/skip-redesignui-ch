@@ -1,4 +1,4 @@
-// This utility function transforms API data into a structured Skip object
+// // Description: This utility function transforms API data into a structured Skip object
 import type { Skip } from '../types/skip';
 
 export const transformSkipData = (apiData: any): Skip => {
