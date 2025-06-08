@@ -21,22 +21,7 @@ export default function ThemeToggle() {
         <>
             <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                style={{
-                    position: 'fixed',
-                    top: 16,
-                    right: 16,
-                    zIndex: 1000,
-                    padding: '8px 16px',
-                    borderRadius: '24px',
-                    border: 'none',
-                    background: theme === "dark" ? '#222' : '#fff',
-                    color: theme === "dark" ? '#fff' : '#222',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                }}
+                className="fixed top-4 right-4 z-[1000] px-4 py-2 rounded-full border-none shadow-md cursor-pointer flex items-center gap-2 bg-white text-gray-900 dark:bg-gray-900 dark:text-white"
                 aria-label="Toggle dark mode"
             >
                 {theme === "dark" ? (
@@ -47,7 +32,7 @@ export default function ThemeToggle() {
                 ) : (
                     <>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" style={{ verticalAlign: 'middle' }}>
+                            xmlns="http://www.w3.org/2000/svg" className="inline align-middle">
                             <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
                                 fill="currentColor" />
                         </svg>

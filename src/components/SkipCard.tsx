@@ -56,8 +56,9 @@ const SkipCard: React.FC<SkipCardPropsExtended> = ({
                     </span>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                    <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">£{skip.price.total.toFixed(0)}</span>
                     <span className="text-xs text-gray-500 dark:text-gray-300">Total</span>
+                    <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">£{skip.price.total.toFixed(0)}</span>
+                    
                 </div>
                 <button
                     type="button"
