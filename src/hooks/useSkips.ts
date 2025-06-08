@@ -1,4 +1,4 @@
-// // Description: This file provides a React hook to fetch and transform skip data from an API.
+// Description: This file provides a React hook to fetch and transform skip data from an API.
 // It includes error handling and data transformation to ensure the skip data is in the correct format for use in the application.
 import { useEffect, useState } from 'react';
 import { transformSkipData } from '../utils/transformSkips';
