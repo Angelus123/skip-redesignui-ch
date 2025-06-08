@@ -27,7 +27,7 @@ export default function ThemeToggle() {
                 {theme === "dark" ? (
                     <>
                         <span role="img" aria-label="sun">🌞</span>
-                        Switch to Light Mode
+                        <span className="hidden sm:inline">Switch to Light Mode</span>
                     </>
                 ) : (
                     <>
@@ -36,7 +36,7 @@ export default function ThemeToggle() {
                             <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
                                 fill="currentColor" />
                         </svg>
-                        Switch to Dark Mode
+                        <span className="hidden sm:inline">Switch to Dark Mode</span>
                     </>
                 )}
             </button>

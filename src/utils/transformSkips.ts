@@ -4,12 +4,12 @@ import type { Skip } from '../types/skip';
 export const transformSkipData = (apiData: any): Skip => {
   return {
     id: apiData.id.toString(),
-    size: apiData.size || 0, // Default to 0 if null
+    size: apiData.size || 0, 
     description: `${apiData.size || 0} Yard Skip`,
-    hirePeriod: apiData.hire_period_days || 14, // Default 14 days
+    hirePeriod: apiData.hire_period_days || 14, 
     price: {
       base: apiData.price_before_vat || 0,
-      vat: apiData.vat || 20, // Default 20% VAT
+      vat: apiData.vat || 20,
       total: (apiData.price_before_vat || 0) * (1 + (apiData.vat || 20) / 100)
     },
     transportCost: apiData.transport_cost || 0,
@@ -34,7 +34,6 @@ export const transformSkipData = (apiData: any): Skip => {
 
 const getSkipDimensions = (size: number | null): string => {
   const defaultSize = size || 0;
-  // These are example dimensions - adjust based on real skip specs
   switch (true) {
     case defaultSize <= 4: return '3.5ft x 4.5ft x 3ft';
     case defaultSize <= 8: return '6ft x 5ft x 4ft';
