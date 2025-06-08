@@ -6,22 +6,21 @@ import type { Skip } from '../types/skip'
 
 const SkipSelectionPage = () => {
   const { data: skips, loading, error } = useSkips()
-
-  const [selectedSkipId, setSelectedSkipId] = React.useState<string[]>([]);
-
+  const [selectedSkipId, setSelectedSkipId] = React.useState<string | null>(null);
   React.useEffect(() => {
-    const stored = localStorage.getItem('selectedSkipIds')
-    if (stored) {
-      setSelectedSkipId(JSON.parse(stored))
+    const storedSkipId = localStorage.getItem('selectedSkipId');
+    if (storedSkipId) {
+      try {
+        setSelectedSkipId(JSON.parse(storedSkipId));
+      } catch {
+        console.error('Failed to parse selectedSkipId from localStorage');
+        setSelectedSkipId(null);
+      }
     }
-  }, [])
-
-  React.useEffect(() => {
-    localStorage.setItem('selectedSkipIds', JSON.stringify(selectedSkipId))
-  }, [selectedSkipId])
-
+  }, []);
   const handleSelect = (skipId: string) => {
-    setSelectedSkipId([skipId]);
+    setSelectedSkipId(skipId);
+    localStorage.setItem('selectedSkipId', JSON.stringify(skipId));
   };
 
   return (
@@ -29,15 +28,6 @@ const SkipSelectionPage = () => {
       <div className="max-w-7xl mx-auto py-10 px-4">
         <header className="flex flex-col items-center mb-12">
           <div className="rounded-full p-4 shadow-lg mb-4 flex items-center justify-center transition-colors duration-300">
-            <svg className="h-10 w-10 text-yellow-600 dark:text-yellow-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <rect x="3" y="7" width="13" height="10" rx="2" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 17V7h2a2 2 0 012 2v6a2 2 0 01-2 2h-2z" />
-              <circle cx="7.5" cy="19" r="1.5" />
-              <circle cx="17.5" cy="19" r="1.5" />
-            </svg>
-            <svg className="h-10 w-10 text-blue-700 dark:text-blue-200 ml-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 7l-1.5-2.5M21 7l-2.5 1.5M21 7h-6m-6 10l1.5 2.5M3 17l2.5-1.5M3 17h6m2-13v4m0 0l-2.5 2.5M12 5l2.5 2.5M12 19v-4m0 0l2.5-2.5M12 15l-2.5-2.5" />
-            </svg>
           </div>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-tight">Choose Your Skip Size</h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300 text-lg">Browse our range of skips and pick the best fit for your project.</p>
@@ -64,15 +54,15 @@ const SkipSelectionPage = () => {
               {skips.map((skip: Skip) => (
                 <div
                   key={skip.id}
-                  className={`rounded-xl shadow-md border-2 transition-all duration-200 ${selectedSkipId.includes(skip.id)
-                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900'
-                      : 'border-transparent bg-white dark:bg-gray-800'
-                    } hover:shadow-lg`}
+                  className={`rounded-xl shadow-md border-2 transition-all duration-200 ${selectedSkipId === skip.id
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900'
+                    : 'border-transparent bg-white dark:bg-gray-800'
+                  } hover:shadow-lg`}
                 >
                   <SkipCard
-                    skip={skip}
-                    selected={selectedSkipId.includes(skip.id)}
-                    onClick={() => handleSelect(skip.id)}
+                  skip={skip}
+                  selected={selectedSkipId === skip.id}
+                  onClick={() => handleSelect(skip.id)}
                   />
                 </div>
               ))}
