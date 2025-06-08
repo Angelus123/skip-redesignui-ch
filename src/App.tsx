@@ -5,7 +5,6 @@ function App() {
     <div className="p-4">
       <ThemeToggle />
     </div>
-
     <SkipSelectionPage />
   </div>
 }
