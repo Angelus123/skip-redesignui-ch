@@ -60,7 +60,7 @@ const SkipSelectionPage = () => {
           )}
 
           {skips && (
-            <div className="grid gap-6 grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
               {skips.map((skip: Skip) => (
                 <div
                   key={skip.id}
