@@ -89,7 +89,7 @@ npm run dev
 
 ## 📸 Preview
 
-![Skip Selection UI Preview](https://github.com/Angelus123/skip-redesignui-ch/blob/dev/src/assets/skip-selection-preview.png)
+![Skip Selection UI Preview](./assets/skip-selection-preview.png)
 
 ![Skip Mobile Preview](./src/assets/skip-cards-phone.PNG)
 
