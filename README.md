@@ -89,9 +89,9 @@ npm run dev
 
 ## 📸 Preview
 
-![Skip Selection UI Preview](./assets/skip-selection-preview.png)
 
-![Skip Mobile Preview](./src/assets/skip-cards-phone.PNG)
+![Skip Selection UI Preview](https://github.com/user-attachments/assets/f11cf298-3573-4cf4-a47b-9c6d48550b1a)
+![image](https://github.com/user-attachments/assets/12d3e3cf-6d22-428e-a8c4-0240cb9aee3f)
 
 
 
