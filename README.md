@@ -86,7 +86,7 @@ npm run dev
 ```
 🌐 Live Preview
 👉 Deployed on: [https://9fsx5q-3000.csb.app]
-
+```
 ## 📸 Preview
 
 
