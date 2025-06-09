@@ -1,10 +1,15 @@
+/**
+ * SkipCard displays skip info, color selection, and selection state.
+ * - Loads selected skip ID from localStorage.
+ * - Maps color to image for dynamic display..
+ */
 import React from 'react'
 import type { Skip } from '../types/skip'
 import yellowSkip from '../assets/skip-14.png'
 import blueSkip from '../assets/blue-skip.png'
 import greenSkip from '../assets/green-skip.png'
 import blackSkip from '../assets/black-skip.png'
-import ColorCircles  from './ColorCircles'
+import ColorCircles  from './ColorCircle'
 
 type SkipCardProps = {
     skip: Skip
@@ -27,7 +32,6 @@ const SkipCard: React.FC<SkipCardPropsExtended> = ({
         return null
     })
 
-    // Set up color state and image mapping
     const [selectedColor, setSelectedColor] = React.useState<'yellow' | 'green' |'blue'| 'black' >('yellow')
     const colorToImage: Record<'yellow' | 'green' | 'blue'| 'black', string> = {
         blue: blueSkip,
@@ -127,7 +131,6 @@ const SkipCard: React.FC<SkipCardPropsExtended> = ({
                     <div>
                         <div className="w-full flex justify-center items-end mt-4"></div>
                         <div className="bg-white dark:bg-gray-900 p-2 sm:p-3 w-full max-w-3xl relative mx-auto pointer-events-auto flex flex-col sm:flex-row items-center gap-3 shadow-lg shadow-black/40 dark:shadow-yellow-900 border border-gray-300 dark:border-gray-700">
-                            {/* Image */}
                             <div className="flex-1 flex justify-center items-center">
                                 <img
                                     src={colorToImage[selectedColor]}
@@ -135,7 +138,6 @@ const SkipCard: React.FC<SkipCardPropsExtended> = ({
                                     className="w-28 sm:w-40 md:w-56 h-auto object-cover rounded-lg shadow-md"
                                 />
                             </div>
-                            {/* Info */}
                             <div className="flex-1 flex flex-col items-center justify-center">
                                 <h3 className="text-sm font-bold text-yellow-800 dark:text-yellow-200">{skip.size} Yard Skip</h3>
                                 <p className="text-lg font-bold text-gray-900 dark:text-gray-100">
@@ -145,7 +147,6 @@ const SkipCard: React.FC<SkipCardPropsExtended> = ({
                                     Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.
                                 </p>
                             </div>
-                            {/* Actions */}
                             <div className="flex-1 flex flex-col items-center justify-center gap-1 w-full sm:w-auto">
                                 <div className="flex flex-row gap-2 w-full justify-center mt-1">
                                     <button

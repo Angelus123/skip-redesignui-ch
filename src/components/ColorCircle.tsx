@@ -1,4 +1,4 @@
-const ColorCircles: React.FC<{ color: string; selected?: boolean }> = ({ color, selected }) => (
+const ColorCircle: React.FC<{ color: string; selected?: boolean }> = ({ color, selected }) => (
     <div style={{ display: 'flex', gap: '4px' }}>
         <div
             key={color}
@@ -19,4 +19,4 @@ const ColorCircles: React.FC<{ color: string; selected?: boolean }> = ({ color, 
     </div>
 );
 
-export default ColorCircles;
+export default ColorCircle;
