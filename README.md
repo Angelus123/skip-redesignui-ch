@@ -18,8 +18,9 @@ Redesign the page located at the “Choose your skip size” step of the booking
 
 ### Additional Features
 - Added support for both dark and light modes, allowing users to switch themes for better accessibility and 
-comfort
+  comfort
 - Implemented a footer to enhance customer satisfaction
+- Implemented functionality to dynamically change the skip color based
 
 ## Suggested Features in future
 - There should be a filter component to efficiently search and filter skips like when the available options  are more, improving usability and performance for large datasets
