@@ -18,8 +18,9 @@ Redesign the page located at the “Choose your skip size” step of the booking
 
 ### Additional Features
 - Added support for both dark and light modes, allowing users to switch themes for better accessibility and 
-comfort
+  comfort
 - Implemented a footer to enhance customer satisfaction
+- Implemented functionality to dynamically change the skip color based
 
 ## Suggested Features in future
 - There should be a filter component to efficiently search and filter skips like when the available options  are more, improving usability and performance for large datasets
@@ -86,12 +87,12 @@ npm run dev
 ```
 🌐 Live Preview
 👉 Deployed on: [https://9fsx5q-3000.csb.app]
-
+```
 ## 📸 Preview
 
-![Skip Selection UI Preview](./assets/skip-selection-preview.png)
 
-![Skip Mobile Preview](./src/assets/skip-cards-phone.PNG)
+![Skip Selection UI Preview](https://github.com/user-attachments/assets/f11cf298-3573-4cf4-a47b-9c6d48550b1a)
+![image](https://github.com/user-attachments/assets/12d3e3cf-6d22-428e-a8c4-0240cb9aee3f)
 
 
 
