@@ -31,7 +31,7 @@ const SkipSelectionPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-green-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-500">
       <div className="max-w-7xl mx-auto py-10 px-4">
-        <header className="flex flex-col items-center mb-5">
+        <header className="flex flex-col items-center my-5">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-tight">Choose Your Skip Size</h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300 text-lg">Browse our range of skips and pick the best fit for your project.</p>
         </header>
